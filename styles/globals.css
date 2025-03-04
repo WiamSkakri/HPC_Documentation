@@ -5,6 +5,9 @@
   --code-text: #f8f8f2;
   --heading-color: #ffffff;
   --border-color: #333333;
+  --sidebar-bg: #1a1a1a;
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
+  --sidebar-active: rgba(255, 255, 255, 0.15);
 }
 
 html,
@@ -21,6 +24,15 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  color: #0070f3;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -30,17 +42,19 @@ body {
 
 .main {
   flex: 1;
-  padding: 1rem 2rem;
+  padding: 2rem 3rem;
   display: flex;
   flex-direction: column;
+  transition: margin-left 0.3s ease;
+  box-sizing: border-box;
 }
 
 .content {
   width: 100%;
-  max-width: 100%;
-  margin: 0;
+  max-width: 950px;
+  margin: 0 auto;
   background: var(--background-color);
-  padding: 0;
+  padding: 1rem 0;
 }
 
 .footer {
@@ -48,6 +62,18 @@ body {
   text-align: center;
   border-top: 1px solid var(--border-color);
   color: #888;
+  margin-left: 250px;
+  transition: margin-left 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .main {
+    padding: 3.5rem 1.5rem 1.5rem;
+  }
+  
+  .footer {
+    margin-left: 0;
+  }
 }
 
 /* Markdown styling */

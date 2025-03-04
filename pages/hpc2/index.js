@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { MDXRemote } from 'next-mdx-remote';
-import Layout from '../components/Layout';
-import CodeBlock from '../components/CodeBlock';
-import { getMdxSource, getAllPagesMetadata } from '../lib/mdx';
+import Layout from '../../components/Layout';
+import CodeBlock from '../../components/CodeBlock';
+import { getMdxSource, getAllPagesMetadata } from '../../lib/mdx';
 
 const components = {
   code: CodeBlock,
   pre: (props) => <div {...props} />,
 };
 
-export default function Home({ mdxSource, frontmatter, pages }) {
+export default function Hpc2Page({ mdxSource, frontmatter, pages }) {
   useEffect(() => {
     // Use a dynamic import for the highlight.js styles
     try {
@@ -21,7 +21,7 @@ export default function Home({ mdxSource, frontmatter, pages }) {
   }, []);
 
   return (
-    <Layout title={frontmatter.title} pages={pages}>
+    <Layout title={frontmatter.title || 'HPC Guide'} pages={pages}>
       <article className="markdown-content">
         <MDXRemote {...mdxSource} components={components} />
       </article>
@@ -31,7 +31,7 @@ export default function Home({ mdxSource, frontmatter, pages }) {
 
 export async function getStaticProps() {
   try {
-    const { mdxSource, frontmatter } = await getMdxSource('hpc-environment');
+    const { mdxSource, frontmatter } = await getMdxSource('hpc2');
     const pages = getAllPagesMetadata();
     
     return {

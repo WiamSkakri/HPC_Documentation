@@ -1,0 +1,50 @@
+# When you open HPC
+
+### Setting the module path variable pointing to where SYCL is installed:
+
+```jsx
+module use /home/nkt8/.usr/local/share/modulefiles
+```
+
+### Initializing the oneAPI environment
+
+```cpp
+module load SYCL/2024.0.1.46
+```
+
+### Allocating a GPU node
+
+```jsx
+srun -p gpu -A sxk1942 -c 4 --mem=32GB --gpus=1 --pty bash
+```
+
+# Automating the process
+
+Instead of having to type in or copy-past these commands each time you open HPC, you can simply run the following script every time you log into your HPC account
+
+### The bash script
+
+```bash
+vim <name-of-file>.sh
+# click i to initiate insert mode
+```
+
+```bash
+#!/usr/bin/env bash
+  
+module use /home/nkt8/.usr/local/share/modulefiles
+module load SYCL/2024.0.1.46
+module load cuDNN
+module load CUDA/12.3.0
+module load Python/3.12.3-GCCcore-13.3.0
+```
+
+```bash
+# click ESC then type :wq! to save the file and quit
+```
+
+### Running the bash script
+
+```bash
+source <name-of-file>.sh
+```
